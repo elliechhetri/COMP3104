@@ -8,10 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: exercise04   
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
-      - run: npm ci || npm install
-      - run: npm test
+          node-version: '22.x'          # or 'lts/*'
+      - run: npm install                # use install (no lockfile yet)
+      - run: npm test                   # will echo the warning and pass
